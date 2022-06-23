@@ -4,42 +4,48 @@
       function computerPlay(){
           const arr = ["Rock","Paper","Scissors"];
           const random = Math.floor(Math.random()* arr.length);
-          console.log( arr[random]);
+      return(  console.log("computer:" + ( arr[random])));
+      
+         
 
       }
       
+      
+     
+     
      
      
       function playerPlay(){
          let  option = prompt("choose an action");
-          console.log( option);
+          return( console.log("Player:" + option));
 
       }
+     
       
 
-      const ps = "rock";
-          const cs = computerPlay();
-     
+     const ps =playerPlay();
+     const cs = computerPlay();
+
       function playRound(ps,cs){
-          if (ps === cs){
+          if (ps == cs){
               console.log( "you draw!");
           }
-        else  if (ps === 'rock' && cs ==='scissors'){
+        else  if (ps == 'rock' && cs =='scissors'){
               console.log("you win! rock beats scissors");
           }
-          else  if (ps === 'rock' && cs ==='paper'){
+          else  if (ps == 'rock' && cs =='paper'){
               console.log("you lose! paper  beats rock");
           }
-          else if(ps === 'paper' && cs === 'rock'){
+          else if(ps == 'paper' && cs =='rock'){
               console.log("you win! Paper beats scissors");
           }
-          else if(ps === 'paper' && cs === 'scissors'){
+          else if(ps == 'paper' && cs == 'scissors'){
               console.log("you lose! scissors beats paper");
           }
-          else if(ps === 'scissors' && cs === 'paper'){
+          else if(ps == 'scissors' && cs == 'paper'){
             console.log("you win! scissors beats paper");
           }
-          else if(ps === 'scissors' && cs === 'rock'){
+          else if(ps == 'scissors' && cs == 'rock'){
             console.log("you lose! rock beats scissors");
           }
           else{
@@ -48,7 +54,7 @@
         }
 
          
-          playRound(ps,cs);
+          playRound(ps,cs); 
 
 
 
