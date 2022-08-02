@@ -1,12 +1,31 @@
 <!DOCTYPE html>
     <body>
+      <div class="scores">
+        <span id="compsscore">Computer:</span>
+        <span id="playerscore">Player:</span>
+      </div>
+      <div class="container">
+        <img class ="rock" src="rock.jpe">
+        <img class ="paper" src="paper.jpe">
+        <img class="scissors" src="scissors.jpe">
+      </div>
+      <div class="result"></div>
+
+
+
         <script>
           let compscore=0;
           let playerscore=0;
           let winner='';
-
+// get a reference to the button element that already exists in our HTML
+const rock= document.querySelector(".rock");
+const paper= document.querySelector(".paper");
+const scissors= document.querySelector(".scissors");
+const div = document.querySelector('.result');
+const compsscorespan= document.querySelector('#compsscore');
+const playerscorespan=document.querySelector('#playerscore');
           
-          function computerPlay(){
+       function computerPlay(){
           const arr = ["rock","paper","scissors"];
           const random = arr[Math.floor(Math.random()* arr.length)];
          // console.log("computer:" + arr[random]);
@@ -20,55 +39,84 @@
           return option.toLowerCase();
 
       }
-
+     
       function playRound(ps,cs){
-      
-
+        console.log("1", ps, "2",cs );
+        const p = document.createElement('p');
+        
           if (ps === cs){
-
-             return ('you draw!');
+            
+            p.innerText='you draw!';
           }else if ((ps === 'rock') && (cs === 'scissors')){
             playerscore++;
-            return("you win! rock beats scissors");
+            
+            p.innerText="you win! rock beats scissors";
           } else  if (ps === 'rock' && cs === 'paper'){
             compscore++;
-            return("you lose! paper  beats rock");
+            p.innerText="you lose! paper  beats rock";
           }else if(ps === 'paper' && cs === 'rock'){
             playerscore++;
-            return("you win! Paper beats scissors");
+            p.innerText="you win! Paper beats scissors";
           }else if(ps === 'paper' && cs === 'scissors'){
             compscore++;
-            return("you lose! scissors beats paper");
+            p.innerText="you lose! scissors beats paper";
           }else if(ps === 'scissors' && cs === 'paper'){
             playerscore++;
-            return("you win! scissors beats paper");
+            p.innerText="you win! scissors beats paper";
           }else if(ps === 'scissors' && cs === 'rock'){
             compscore++;
-            
-            return("you lose! rock beats scissors");
-          }
+            p.innerText="you lose! rock beats scissors";
+
+          
         }
+        div.appendChild(p);}
+        
+        function result(playerscore,compscore){
+
+          if(compscore===5){
+            let h2 = document.createElement('h2');
+            h2.innerText="COMPUTER WINS";
+            div.appendChild(h2);
+          }
+           if(playerscore===5){
+             let h2=document.createElement('h2');
+            h2.innerText="YOU WIN";
+            div.appendChild(h2);
+            
+          }
+          
+        }
+        function updateScore(compscore,playerscore){
+          compsscorespan.innerText=`Computer: ${compscore}`;
+          playerscorespan.innerText=`Human: ${playerscore}`;
+
+        }
+        rock.addEventListener("click",()=>{
+        let ps = "rock";
+        let cs=computerPlay();
+        playRound(ps,cs);
+        updateScore(compscore,playerscore);
+        result(playerscore,compscore);
+      });
+
+      paper.addEventListener('click',()=>{
+        let ps="paper";
+        let cs = computerPlay();
+        playRound(ps,cs);
+        updateScore(compscore,playerscore);
+        result(playerscore,compscore);
+      });
+      scissors.addEventListener('click',()=>{
+        let ps="scissors";
+        let cs = computerPlay();
+        playRound(ps,cs);
+        updateScore(compscore,playerscore);
+        result(playerscore,compscore);
+      });
+
+
         
        
-        //console.log("computer:" + cs);
-
-          function game(){
-        for(let i=0; i<5; i++){
-          const ps=playerPlay();
-          const cs = computerPlay();
-      console.log  (playRound(ps,cs)); }
-        
-        if(playerscore> compscore){
-       return ('you win!');
-        }else if(playerscore<compscore){
-        return('you lose');
-      }else{
-        return ('it is a draw');
-      }
-    }
-
-      
-      console.log(game());
 
 
         </script>
